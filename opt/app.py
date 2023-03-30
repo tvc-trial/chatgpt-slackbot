@@ -84,7 +84,8 @@ def message_gpt(client, message, say, context, logger):
             # ChatCompletionを呼び出す
             logger.info(f"user: {message['user']}, prompt: {prompt}")
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
+                # model="gpt-3.5-turbo",
+                engine="tvc-gpt3-chat",
                 messages=history_array,
                 top_p=1,
                 n=1,
