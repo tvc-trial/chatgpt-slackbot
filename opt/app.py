@@ -20,8 +20,12 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 from dotenv import load_dotenv
 load_dotenv()
 
-openai.organization = os.getenv("ORGANAZTION_ID")
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_type = "azure"
+openai.api_base = os.getenv("AOAI_API_BASE")
+openai.api_version = "2023-03-15-preview"
+# openai.organization = os.getenv("ORGANAZTION_ID")
+# openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("AOAI_API_KEY")
 
 # ボットトークンとソケットモードハンドラーを使ってアプリを初期化
 app = App(token=os.getenv("SLACK_BOT_TOKEN"))
