@@ -20,8 +20,12 @@ from slack_bolt.adapter.socket_mode import SocketModeHandler
 from dotenv import load_dotenv
 load_dotenv()
 
-openai.organization = os.getenv("ORGANAZTION_ID")
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_type = "azure"
+openai.api_base = os.getenv("AOAI_API_BASE")
+openai.api_version = "2023-03-15-preview"
+# openai.organization = os.getenv("ORGANAZTION_ID")
+# openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.api_key = os.getenv("AOAI_API_KEY")
 
 # ボットトークンとソケットモードハンドラーを使ってアプリを初期化
 app = App(token=os.getenv("SLACK_BOT_TOKEN"))
@@ -80,7 +84,8 @@ def message_gpt(client, message, say, context, logger):
             # ChatCompletionを呼び出す
             logger.info(f"user: {message['user']}, prompt: {prompt}")
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
+                # model="gpt-3.5-turbo",
+                engine="tvc-gpt3-chat",
                 messages=history_array,
                 top_p=1,
                 n=1,

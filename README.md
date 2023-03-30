@@ -60,6 +60,8 @@ SLACK_APP_TOKEN=xapp-1-xxxxxxxxxxxxxxxxx
 NAME_SUFFIX=-main
 USE_ONLY_PUBLIC_CHANNEL=False
 USE_GPT_4_COMMAND=False
+AOAI_API_BASE=xxxxxxxxxxxxxxxxx
+AOAI_API_KEY=xxxxxxxxxxxxxxxxx
 ```
 
 NAME_SUFFIXは複数、Dockerコンテナを起動する際にコンテナ名がかぶらないようにするためのサフィックス。USE_ONLY_PUBLIC_CHANNELはパブリックチャンネルのみに利用を制限するか。USE_GPT_4_COMMANDはGPT-4で会話するコマンドを利用するか。

@@ -49,7 +49,8 @@ def say_channel_analysis(client, message, say, using_user, target_channel, logge
     # ChatCompletionを呼び出す
     logger.debug(f"prompt: `{prompt}`")
     chat_gpt_response = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
+        # model="gpt-3.5-turbo",
+        engine="tvc-gpt3-chat",
         messages=[{"role": "user", "content": prompt}],
         top_p=1,
         n=1,
