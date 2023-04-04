@@ -20,4 +20,5 @@ RUN python -m pip install tiktoken --upgrade
 RUN python -m pip install slack_bolt --upgrade
 RUN python -m pip install duckduckgo_search --upgrade
 
+COPY opt/ /root/opt
 CMD cd /root/opt/ && python app.py
