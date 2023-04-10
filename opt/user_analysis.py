@@ -63,7 +63,8 @@ def say_user_analysis(client, message, say, using_user, target_user, logger):
     logger.debug(f"prompt: `{prompt}`")
     chat_gpt_response = openai.ChatCompletion.create(
         # model="gpt-3.5-turbo",
-        engine="tvc-gpt3-chat",
+        # engine="tvc-gpt3-chat",
+        engine="tvc-gpt4",
         messages=[{"role": "user", "content": prompt}],
         top_p=1,
         n=1,

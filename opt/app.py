@@ -14,6 +14,7 @@ import re
 import openai
 import os
 from distutils.util import strtobool
+from slack_sdk import WebClient
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 
@@ -28,7 +29,8 @@ openai.api_version = "2023-03-15-preview"
 openai.api_key = os.getenv("AOAI_API_KEY")
 
 # ボットトークンとソケットモードハンドラーを使ってアプリを初期化
-app = App(token=os.getenv("SLACK_BOT_TOKEN"))
+#app = App(token=os.getenv("SLACK_BOT_TOKEN"))
+app = App(client=WebClient(token=os.environ["SLACK_BOT_TOKEN"], proxy=os.environ["PROXY"]))
 
 # 現在使用中のユーザーのセット、複数リクエストを受けると履歴が壊れることがあるので、一つのユーザーに対しては一つのリクエストしか受け付けないようにする
 using_user_set = set()  
@@ -85,7 +87,8 @@ def message_gpt(client, message, say, context, logger):
             logger.info(f"user: {message['user']}, prompt: {prompt}")
             response = openai.ChatCompletion.create(
                 # model="gpt-3.5-turbo",
-                engine="tvc-gpt3-chat",
+                # engine="tvc-gpt3-chat",
+                engine="tvc-gpt4",
                 messages=history_array,
                 top_p=1,
                 n=1,
@@ -307,4 +310,5 @@ def handle_message_events(body, logger):
 
 # アプリを起動
 if __name__ == "__main__":
-    SocketModeHandler(app, os.getenv("SLACK_APP_TOKEN")).start()
+    SocketModeHandler(app=app, app_token=os.environ["SLACK_APP_TOKEN"], proxy=os.environ["PROXY"],).start()
+#    SocketModeHandler(app, os.getenv("SLACK_APP_TOKEN")).start()

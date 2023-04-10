@@ -30,7 +30,8 @@ def say_with_websearch(client, message, say, using_user, question, logger):
     query_ask_prompt = f"「{question}」という質問をDuckDuckGoの検索で調べるときに適切な検索クエリを教えてください。検索クエリとは単一の検索のための単語、または、複数の検索のための単語を半角スペースで繋げた文字列です。検索クエリを##########検索クエリ##########の形式で教えてください。"
     query_gpt_response = openai.ChatCompletion.create(
         # model="gpt-3.5-turbo",
-        engine="tvc-gpt3-chat",
+        # engine="tvc-gpt3-chat",
+        engine="tvc-gpt4",
         messages=[{"role": "user", "content": query_ask_prompt}],
         top_p=1,
         n=1,
@@ -83,7 +84,8 @@ def say_with_websearch(client, message, say, using_user, question, logger):
     logger.debug(f"prompt: `{prompt}`")
     chat_gpt_response = openai.ChatCompletion.create(
         # model="gpt-3.5-turbo",
-        engine="tvc-gpt3-chat",
+        # engine="tvc-gpt3-chat",
+        engine="tvc-gpt4",
         messages=[{"role": "user", "content": prompt}],
         top_p=1,
         n=1,

@@ -44,7 +44,8 @@ class GPT_4_CommandExecutor():
         # ChatCompletionを呼び出す
         logger.info(f"user: {message['user']}, prompt: {prompt}")
         response = self.openai.ChatCompletion.create(
-            model="gpt-4",
+            #model="gpt-4",
+            engine="tvc-gpt4",
             messages=history_array,
             top_p=1,
             n=1,
